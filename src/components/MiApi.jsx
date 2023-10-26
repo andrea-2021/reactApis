@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const MiApi = ({ searchValue }) => {
-    const [data, setData] = useState({});
     const [indicadores, setIndicadores] = useState([]);
-    const [sortDirection, setSortDirection] = useState('asc'); // Estado para la dirección del orden
 
     useEffect(() => {
         // Función asincrónica para realizar la solicitud
@@ -15,7 +13,6 @@ const MiApi = ({ searchValue }) => {
                     throw new Error('No se pudo obtener datos de la API');
                 }
                 const data = await response.json();
-                setData(data);
                 // Agregar las propiedades del objeto a un arreglo
                 const indicadoresArray = Object.keys(data).map(indicador => data[indicador]);
                 // Excluir las primeras 3 tarjetas aquí al cargar los datos
@@ -36,8 +33,6 @@ const MiApi = ({ searchValue }) => {
 
     // Función para cambiar la dirección del orden y ordenar los indicadores
     const handleSort = (direction) => {
-        // Cambia la dirección de orden
-        setSortDirection(direction);
 
         // Ordena los indicadores según la dirección actual del orden
         const sortedIndicadores = [...indicadoresFiltrados].sort((a, b) => {

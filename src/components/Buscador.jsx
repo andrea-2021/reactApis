@@ -4,6 +4,7 @@ const Buscador = ({ searchValue }) => {
     const [value, setValue] = useState('')
 
     const handleChange = (event) => {
+        console.log(event);
         const newValue = event.target.value;
         setValue(newValue);
 
